@@ -41,7 +41,9 @@ for MOUNT_POINT in $SAMBA_MOUNT_POINTS; do
   sudo sed -i "\|//${SAMBA_SERVER_ADDRESS}/${MOUNT_NAME}|d" "/etc/fstab"
   FSTAB_LINE="//${SAMBA_SERVER_ADDRESS}/${MOUNT_NAME} ${MOUNT_POINT} cifs credentials=${SAMBA_LOCAL_CREDS_PATH},_netdev,vers=3.1.1,uid=$(id -u),gid=$(id -g),file_mode=0775,dir_mode=0775 0 0"
   echo "$FSTAB_LINE" | sudo tee -a "/etc/fstab" > /dev/null
-  unlink "$HOME/${MOUNT_NAME}"
+  if [[ -l "$HOME/${MOUNT_NAME}" ]]; then
+    unlink "$HOME/${MOUNT_NAME}"
+  fi 
   ln -s "/mnt/${MOUNT_NAME}" "$HOME/${MOUNT_NAME}"
 done
 
