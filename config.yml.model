@@ -1,9 +1,9 @@
 local:
-  creds_path: "/home/myusername/.samba-client-creds"
+  creds_path: "/home/gmukko/.samba-client-creds"
 server:
-  address: 10.99.1.4
-  username: "my_server_user"
-  password: "my_server_password"
+  address: "10.0.1.4"
+  username: "gmukko"
+  password: "<CHANGE_ME>"
   mount_points:
     - "/mnt/Media"
     - "/mnt/Misc"
