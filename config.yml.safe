@@ -1,9 +1,40 @@
-local:
-  creds_path: "/home/gmukko/.samba-client-creds"
-server:
-  address: "10.0.1.4"
-  username: "gmukko"
-  password: "<CHANGE_ME>"
-  mount_points:
-    - "/mnt/Media"
-    - "/mnt/Misc"
+mounts:
+  - name: ukko-server-1-media
+    enabled: true
+    server: ukko-server-1.lan
+    share: Media
+    mount_point: /mnt/media
+    username: gmukko
+    password: "<CHANGE_ME>"
+    guest: false
+    domain: null
+    uid: null
+    gid: null
+    vers: "3.1.1"
+    extra_options: "iocharset=utf8,file_mode=0664,dir_mode=0775"
+  - name: ukko-server-1-misc
+    enabled: true
+    server: ukko-server-1.lan
+    share: Misc
+    mount_point: /mnt/misc
+    username: gmukko
+    password: "<CHANGE_ME>"
+    guest: false
+    domain: null
+    uid: null
+    gid: null
+    vers: "3.1.1"
+    extra_options: "iocharset=utf8,file_mode=0664,dir_mode=0775"
+  - name: ukko-pixel-10-pro
+    enabled: true
+    server: ukko-pixel-10-pro.lan
+    share: storage
+    mount_point: /mnt/ukko-pixel-10-pro
+    username: "root"
+    password: null
+    guest: true
+    domain: null
+    uid: null
+    gid: null
+    vers: "2.0"
+    extra_options: "port=<CHANGE_ME>"
