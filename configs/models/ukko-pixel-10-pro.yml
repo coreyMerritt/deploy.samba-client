@@ -1,0 +1,14 @@
+mounts:
+  - name: ukko-pixel-10-pro
+    enabled: true
+    server: ukko-pixel-10-pro.lan
+    share: storage
+    mount_point: /mnt/ukko-pixel-10-pro
+    username: "root"
+    password: null
+    guest: true
+    domain: null
+    uid: null
+    gid: null
+    vers: "2.0"
+    extra_options: "port=<CHANGE_ME>"
