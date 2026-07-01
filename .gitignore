@@ -1,2 +1,7 @@
+# Dirs
 .venv/
-config.yml
+configs/private/
+
+# Files
+
+# Wildcard Matches
