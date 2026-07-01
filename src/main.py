@@ -28,7 +28,7 @@ def main() -> None:
   args = parser.parse_args()
   check_root()
   check_dependencies()
-  entries = load_config(args.config)
+  entries = load_config(Path(args.config))
   if args.status:
     show_status(entries)
     return
@@ -43,6 +43,7 @@ def main() -> None:
     if not args.dry_run:
       subprocess.run(["umount", mp_entry["mount_point"]], capture_output=True, check=False)
       cred_path = CRED_DIR / args.remove
+      assert isinstance(cred_path, Path)
       if cred_path.exists():
         cred_path.unlink()
         log(f"Removed credentials file: {cred_path}")
@@ -88,8 +89,7 @@ def check_dependencies() -> None:
 def log(msg: str) -> None:
   print(f"[samba-mount-manager] {msg}")
 
-def load_config(path: str) -> list[MountEntry]:
-  path = Path(path)
+def load_config(path: Path) -> list[MountEntry]:
   if not path.exists():
     sys.exit(f"ERROR: config file not found: {path}")
   with open(path, "r", encoding="utf-8") as f:
@@ -217,6 +217,7 @@ def build_fstab_line(entry: MountEntry, cred_path: Path | None) -> str:
   vers = entry.get("vers", "3.0")
   opts = []
   if entry.get("guest", False):
+    opts.append("guest")
     opts.append("sec=none")
   else:
     opts.append(f"credentials={cred_path}")
